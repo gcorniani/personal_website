@@ -1,0 +1,90 @@
+---
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { siteConfig } from "../config";
+
+const hasPublications = siteConfig.publications && siteConfig.publications.length > 0;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Publications — {siteConfig.name}</title>
+  </head>
+
+  <body class="bg-white text-gray-900">
+    <Header />
+
+    {hasPublications && (
+      <section class="p-8 sm:p-12 md:p-16 lg:p-24">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+          <div class="lg:col-span-4">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-bold text-gray-900">
+              All Publications
+            </h1>
+            <div
+              class="w-[75px] h-[5px] mt-2 rounded-full"
+              style={`background-color: ${siteConfig.accentColor}`}
+            />
+          </div>
+
+          <div class="lg:col-span-8">
+            <div class="space-y-8">
+              {siteConfig.publications.map((pub, index) => {
+                const Component = pub.link ? "a" : "div";
+                const linkProps = pub.link
+                  ? {
+                      href: pub.link,
+                      target: "_blank",
+                      rel: "noopener noreferrer",
+                    }
+                  : {};
+
+                return (
+                  <div class="group relative">
+                    <Component
+                      {...linkProps}
+                      class={`block p-4 sm:p-6 md:p-8 bg-white border border-gray-200 rounded-xl sm:rounded-2xl shadow-sm transition-all duration-300 ${
+                        pub.link ? "hover:shadow-md hover:-translate-y-0.5" : ""
+                      }`}
+                    >
+                      <div class="space-y-2">
+                        <span
+                          class="text-sm font-mono"
+                          style={{ color: siteConfig.accentColor }}
+                        >
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                        <h3 class="text-base sm:text-lg font-semibold text-gray-900">
+                          {pub.title}
+                        </h3>
+                        <p class="text-sm text-gray-700">{pub.authors}</p>
+                        <p class="text-sm italic text-gray-500">
+                          {pub.journal} ({pub.year})
+                        </p>
+
+                        {pub.tags?.length > 0 && (
+                          <div class="flex flex-wrap gap-2 pt-2">
+                            {pub.tags.map((tag) => (
+                              <span class="px-1.5 py-0 bg-gray-900 text-white rounded-md text-xs font-medium">
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </Component>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
+    )}
+
+    <Footer />
+  </body>
+</html>

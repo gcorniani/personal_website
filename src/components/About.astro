@@ -14,14 +14,14 @@ import { siteConfig } from "../config";
         <div
           class="w-[75px] h-[5px] mt-2 rounded-full"
           style={`background-color: ${siteConfig.accentColor}`}
-        >
-        </div>
+        ></div>
       </div>
 
       <div class="lg:col-span-8 space-y-8">
-        <p class="text-lg sm:text-xl md:text-2xl leading-relaxed text-gray-600">
-          {siteConfig.aboutMe}
-        </p>
+        <div
+          class="text-lg sm:text-xl md:text-2xl leading-relaxed text-gray-600"
+          set:html={siteConfig.aboutMe}
+        ></div>
 
         <div class="pt-4">
           <div class="flex flex-wrap gap-3">

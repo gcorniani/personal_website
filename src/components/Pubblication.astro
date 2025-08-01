@@ -1,0 +1,91 @@
+---
+import { siteConfig } from "../config";
+const hasPublications = siteConfig.publications && siteConfig.publications.length > 0;
+const previewPublications = siteConfig.publications.slice(0, 3);
+---
+
+{hasPublications && (
+  <section id="publications" class="p-8 sm:p-12 md:p-16 lg:p-24">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+      <div class="lg:col-span-4">
+        <h2 class="text-3xl sm:text-4xl md:text-5xl xl:text-7xl font-bold text-gray-900">
+          Publications
+        </h2>
+        <div
+          class="w-[75px] h-[5px] mt-2 rounded-full"
+          style={`background-color: ${siteConfig.accentColor}`}
+        />
+      </div>
+
+      <div class="lg:col-span-8">
+        <div class="space-y-8">
+          {previewPublications.map((pub, index) => {
+            const Component = pub.link ? "a" : "div";
+            const linkProps = pub.link
+              ? {
+                  href: pub.link,
+                  target: "_blank",
+                  rel: "noopener noreferrer",
+                }
+              : {};
+
+            return (
+              <div class="group relative">
+                <Component
+                  {...linkProps}
+                  class={`block p-4 sm:p-6 md:p-8 bg-white border border-gray-200 rounded-xl sm:rounded-2xl shadow-sm transition-all duration-300 ${
+                    pub.link ? "hover:shadow-md hover:-translate-y-0.5" : ""
+                  }`}
+                >
+                  <div class="space-y-2">
+                    <span
+                      class="text-sm font-mono"
+                      style={{ color: siteConfig.accentColor }}
+                    >
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <h3 class="text-base sm:text-lg font-semibold text-gray-900">
+                      {pub.title}
+                    </h3>
+                    <p class="text-sm text-gray-700">{pub.authors}</p>
+                    <p class="text-sm italic text-gray-500">{pub.journal} ({pub.year})</p>
+
+                    {pub.tags?.length > 0 && (
+                      <div class="flex flex-wrap gap-2 pt-2">
+                        {pub.tags.map((tag) => (
+                          <span
+                            class="px-1.5 py-0 text-white rounded-md text-xs font-medium transition-all duration-300"
+                            style={{
+                              backgroundColor: siteConfig.accentColor,
+                            }}
+                            onMouseEnter={(e) =>
+                              (e.currentTarget.style.backgroundColor = '#C33B4A')
+                            }
+                            onMouseLeave={(e) =>
+                              (e.currentTarget.style.backgroundColor = siteConfig.accentColor)
+                            }
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </Component>
+              </div>
+            );
+          })}
+
+          <div class="pt-4">
+            <a
+              href="/publications"
+              class="inline-block text-sm font-medium text-white bg-gray-900 hover:bg-gray-800 transition px-4 py-2 rounded-lg"
+            >
+              View All Publications
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+)}
