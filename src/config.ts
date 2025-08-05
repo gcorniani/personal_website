@@ -18,7 +18,7 @@ export const siteConfig = {
     "Wearable Sensing",
     "Machine Learning",
     "Generative AI",
-    "Musculoskeletal and Neural Modeling",
+    "Neural Modeling",
   ],
   projects: [
   {
