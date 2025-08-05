@@ -11,16 +11,14 @@ export const siteConfig = {
   },
   aboutMe: `I am a <strong class="text-[#A51C30]">Postdoctoral Research Fellow</strong> at <strong class="text-[#A51C30]">Harvard Medical School</strong>, conducting clinical research at the Motion Analysis Lab within Spaulding Rehabilitation Hospital. My work lies at the intersection of biomedical engineering, human motor behavior analysis, and digital health innovation. With a background in computational neuroscience and a strong focus on <strong class="text-[#A51C30]">translational applications</strong>, I develop machine learning and deep learning methods to analyze human behaviors in both healthy and clinical populations.`,
   skills: [
-    "Python",
-    "PyTorch",
-    "TensorFlow",
-    "scikit-learn",
-    "DeepLabCut",
-    "Matlab",
-    "Adobe Illustrator",
-    "OCT imaging",
+    "Neuroengineering"
+    "Neurorehabilitation",
+    "Translational Neuroscience",
+    "Digital Health",
+    "Wearable Sensing"
     "Machine Learning",
-    "Computer Vision",
+    "Generative AI",
+    "Musculoskeletal and Neural Modeling",
   ],
   projects: [
   {
