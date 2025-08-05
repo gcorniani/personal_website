@@ -15,7 +15,7 @@ export const siteConfig = {
     "Neurorehabilitation",
     "Translational Neuroscience",
     "Digital Health",
-    "Wearable Sensing"
+    "Wearable Sensing",
     "Machine Learning",
     "Generative AI",
     "Musculoskeletal and Neural Modeling",
